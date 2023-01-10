@@ -26,8 +26,19 @@ const httpServer = app.listen(PORT, () => {
 });
 
 // Sockets
+const messages = [];
 const io = new Server(httpServer);
 
 io.on('connection', (socket) => {
   console.log("New client connected!");
+
+  socket.on("login", (user)=>{
+    socket.emit("message-logs", messages);
+    socket.emit("welcome", user)
+    socket.broadcast.emit("new-user", user)
+  })
+  socket.on("message", (data)=>{
+    messages.push(data);
+    io.emit("message-logs", messages)
+  })
 });

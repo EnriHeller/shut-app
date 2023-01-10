@@ -2,8 +2,12 @@ const { Router } = require('express');
 
 const router = Router();
 
-router.use('/', (req, res) => {
+router.get('/', (req, res) => {
   res.render('index', {});
 });
+router.get('/chat', (req, res) => {
+  res.render('chat', {});
+});
+
 
 module.exports = router;
