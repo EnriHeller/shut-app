@@ -1,0 +1,1 @@
+const socket = io(); // Connecting to Backend socket server
